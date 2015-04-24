@@ -24,11 +24,11 @@ public:
 private:
     const static int MAX_LEN=100;
     int _percentage;//长度
-    int _buf[MAX_LEN]={0};
+    int _buf[MAX_LEN];
     std::default_random_engine _engier;
     
     
 };
 
 
-#endif /* defined(__PopTouch__probability__) */
+#endif 

@@ -2,7 +2,7 @@
 // Created by Yuanfei He on 15/4/8.
 //
 
-#include "StringUtils.h"
+#include "utils/StringUtils.h"
 #include "cocos2d.h"
 #include <string>
 

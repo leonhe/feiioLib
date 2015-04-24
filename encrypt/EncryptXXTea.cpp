@@ -7,7 +7,7 @@
 //
 
 #include "EncryptXXTea.h"
-#include "xxtea.h"
+#include "xxtea/xxtea.h"
 #include <cstring>
 
 struct UserData

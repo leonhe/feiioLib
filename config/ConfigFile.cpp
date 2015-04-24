@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Yuanfei He. All rights reserved.
 //
 
-#include "ConfigFile.h"
+#include "config/ConfigFile.h"
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -14,6 +14,7 @@
 #include <vector>
 #include <map>
 #include <tuple>
+#include <cstdlib>
 
 using namespace std;
 
@@ -89,7 +90,7 @@ namespace feiio {
                 float *pFloat = static_cast<float *>(value);
                 *pFloat = atol(val.c_str());
                 result = true;
-            }else {
+            }else{
                 throw  logic_error("为找到数据类型!");
             }
         }
@@ -125,7 +126,7 @@ namespace feiio {
 
         int line = 0;
 
-        while (std::getline(str, tmpStr,'\r')) {
+        while (std::getline(str, tmpStr,'\t')) {
 
             vector<string> value; //临时值列表
             vector<string> *pList = nullptr;
@@ -155,7 +156,7 @@ namespace feiio {
         string::size_type pos = 0;
 
         while (pos != string::npos) {
-            pos = source->find(";", pos);
+            pos = source->find("\r", pos);
             auto str = source->substr(offset, pos - offset);
             value->push_back(str);
             if (pos == string::npos) break;
@@ -169,5 +170,64 @@ namespace feiio {
     std::vector<std::string> *ConfigFile::getValueByIndex(std::size_t index) {
         if (index > size) return nullptr;
         return &(_value[index]);
+    }
+
+    bool ConfigTxtFile::initWithData(std::string &data) {
+
+        istringstream str(data);
+        string tmpStr;
+
+        vector<vector<string>> vec;
+
+
+        int line = 0;
+
+        while (std::getline(str, tmpStr,'\n')) {
+
+            vector<string> value; //临时值列表
+            vector<string> *pList = nullptr;
+            if (line == 0) {
+                pList = &_flag;
+            } else if (line == 1) {
+                pList = &_type;
+            } else {
+                pList = &value;
+            }
+
+
+            resolveString(pList, &tmpStr);
+            if (line > 1) {
+                _value.push_back(value);
+                size++;
+            }
+            line++;
+        }
+
+
+
+
+
+        return true;
+    }
+
+    void ConfigTxtFile::resolveString(std::vector<std::string> *value, std::string *source) {
+        string::size_type offset = 0;
+        string::size_type pos = 0;
+
+        while (pos != string::npos) {
+            pos = source->find("\t", pos);
+            auto str = source->substr(offset, pos - offset);
+            value->push_back(str);
+            if (pos == string::npos) break;
+            pos++;
+            offset = pos;
+        }
+    }
+
+
+    void ConfigFile::serialization() {
+
+
+
     }
 };

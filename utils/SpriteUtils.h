@@ -12,6 +12,9 @@ class SpriteUtils {
 public:
     static void addGray(cocos2d::Node* sp);
     static void removeGray(cocos2d::Node* sp);
+    static void addBlack(cocos2d::Node* sp);
+
+    static void setSwallowTouches(cocos2d::Node *layer, bool isRemove);
 };
 
 

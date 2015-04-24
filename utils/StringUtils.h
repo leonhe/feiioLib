@@ -10,11 +10,10 @@
 #include <string>
 namespace feiio
 {
-    struct StringUtils {
-    /*分割字符串并返回到设置的容器中*/
-    static cocos2d::ValueVector &split(const std::string &value,
-            const std::string &flag,
-            cocos2d::ValueVector &con);
+    class StringUtils {
+	public:
+		//split string return setting container
+    static cocos2d::ValueVector &split(const std::string &value,const std::string &flag,cocos2d::ValueVector &con);
 };
 }
 

@@ -12,27 +12,13 @@
 #include <stdio.h>
 #include <string>
 #include <map>
-#include "ConfigFile.h"
-/*
- *auto fileContent = FileUtils::getInstance()->getStringFromFile("Test.csv");
- *auto conf=ConfigFileManager::getInstance();
- *conf->initData(fileContent, "Test", ConfigType::CSV);
- auto test = ConfigFileManager::getInstance()->getConfByName("Test");
- vector<std::string> *data=test->getValueByFlag("id",2);
- 
- string title;
- test->getValue(data, "des",&title);
- CCLOG("%s",title.c_str());
- int len =test->length();
- 
- conf->removeConf("Test");
-   ConfigFileManager::deleteInstance();
- */
+#include "config/ConfigFile.h"
+
 namespace feiio {
   
 enum ConfigType
 {
-    CSV
+    CSV,TXT
 };
 //配置文件工厂类初始化对配置文件类型解析
 class ConfigFileManager
@@ -53,4 +39,4 @@ private:
 };
     
 }
-#endif /* defined(__feiio_libs__ConfigManger__) */
+#endif 

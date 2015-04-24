@@ -6,9 +6,10 @@
 //  Copyright (c) 2015年 Yuanfei He. All rights reserved.
 //
 
-#include "ConfigManger.h"
+#include "config/ConfigManger.h"
 #include <string>
 #include <iostream>
+#include <cstdlib>
 #include <map>
 using namespace std;
 
@@ -30,6 +31,9 @@ ConfigFile *ConfigFileManager::initData(std::string &data, std::string name, Con
     switch (type) {
         case CSV:
             conf = new ConfigCSVFile();
+            break;
+        case TXT:
+            conf = new ConfigTxtFile;
             break;
         default:
             std::cout<<"can't found type:"<<name<<std::endl;

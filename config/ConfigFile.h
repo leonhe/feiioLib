@@ -32,7 +32,7 @@ public:
     inline int length(){return size;};
     //根据索引返回值
     std::vector<std::string> *getValueByIndex(std::size_t index);
-    
+    virtual void serialization();
 protected:
 //    std::vector<DATA*>_basicData;
     std::vector<std::string> _flag;
@@ -50,9 +50,16 @@ public:
     bool initWithData(std::string &data);
     void resolveString(std::vector<std::string> *value,std::string *source);
 };
-    
+
+ class ConfigTxtFile :public ConfigFile
+ {
+ public:
+     bool initWithData(std::string &data);
+     void resolveString(std::vector<std::string> *value,std::string *source);
+ };
+
 }
 
 
 
-#endif /* defined(__feiio_libs__ConfigFile__) */
+#endif

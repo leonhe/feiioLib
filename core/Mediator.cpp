@@ -6,7 +6,7 @@
 //
 //
 
-#include "Mediator.h"
+#include "core/Mediator.h"
 #include "Frameworks.h"
 
 namespace feiio {
@@ -23,7 +23,7 @@ namespace feiio {
 
     }
 
-    void Mediator::updateData() {
+    void Mediator::update() {
 
     }
 

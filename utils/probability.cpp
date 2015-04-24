@@ -6,7 +6,7 @@
 //
 //
 
-#include "probability.h"
+#include "utils/probability.h"
 #include <random>
 
 Probabillty::Probabillty(int percentage):

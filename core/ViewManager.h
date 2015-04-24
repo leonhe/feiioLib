@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 #include "cocos2d.h"
-#include "Mediator.h"
+#include "core/Mediator.h"
 #include "Frameworks.h"
-#include "Observer.h"
+#include "Observer/Observer.h"
 #include <memory>
 namespace feiio {
     class View {
@@ -34,10 +34,10 @@ namespace feiio {
 
     };
 }
-class ViewManager : public cocos2d::Layer,public feiio::View
+class ViewManager : public feiio::View,public cocos2d::Layer
 {
 public:
-    ViewManager(feiio::Mediator *_mediator=nullptr): feiio::View::View(_mediator){};
+    ViewManager(feiio::Mediator *_mediator=nullptr);
     void onEnter() override;
     void onExit() override;
     void onEnterTransitionDidFinish() override;
@@ -46,4 +46,5 @@ public:
 
 };
 
-#endif /* defined(__PopTouch__ViewManager__) */
+
+#endif 

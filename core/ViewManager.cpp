@@ -6,10 +6,10 @@
 //
 //
 
-#include "ViewManager.h"
+#include "core/ViewManager.h"
 #include "cocos2d.h"
 #include "Frameworks.h"
-#include "Observer.h"
+#include "Observer/Observer.h"
 #include <memory>
 USING_NS_CC;
 using namespace feiio;
@@ -89,3 +89,5 @@ void ViewManager::onEnterTransitionDidFinish()
 }
 
 
+ViewManager::ViewManager(Mediator *_mediator):feiio::View::View(_mediator) {
+}

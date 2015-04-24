@@ -18,7 +18,7 @@ namespace feiio {
 
 class View;
 
-class Mediator : public feiio::Observer
+class Mediator : public feiio::Observer,public cocos2d::Ref
 {
     
 public:
@@ -29,8 +29,8 @@ public:
     void setViewCompoment(View *node);
     virtual View *getViewCompoment();
     
-    virtual void updateData();
-    virtual void updateData(const char *key,cocos2d::Ref *data=nullptr);
+    virtual void update() override;
+    void updateData(const char *key, cocos2d::Ref *data = nullptr);
     
     virtual feiio::Subject *getModel() override;
 protected:
@@ -40,4 +40,4 @@ protected:
     
 }
 
-#endif /* defined(__PopTouch__Mediator__) */
+#endif 
