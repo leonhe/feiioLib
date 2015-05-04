@@ -6,7 +6,7 @@
 //
 //
 
-#include "Observer.h"
+#include "Observer/Observer.h"
 #include <algorithm>
 #include <list>
 #include <cassert>
@@ -29,7 +29,7 @@ namespace feiio {
     void Subject::sendNotification()
     {
         for_each(_observers.begin(), _observers.end(), [&](Observer *_observer){
-            _observer->updateData();
+            _observer->update();
         });
      
     }
@@ -95,7 +95,8 @@ namespace feiio {
         auto dispatch=Director::getInstance()->getEventDispatcher();
         dispatch->dispatchCustomEvent(value,data);
     }
-    
-    
-    
+
+    Subject *Observer::getModel() {
+        return nullptr;
+    }
 }

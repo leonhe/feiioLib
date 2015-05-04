@@ -33,9 +33,11 @@ public:
     void updateData(const char *key, cocos2d::Ref *data = nullptr);
     
     virtual feiio::Subject *getModel() override;
+    virtual const char* getName() const{ return _name;};
 protected:
     feiio::Subject *_model;
     View *_view;
+    const char *_name;
 };
     
 }
