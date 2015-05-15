@@ -18,10 +18,11 @@ public:
     bool initWithName(const std::string &value);
     static Tips* createWithNode(const std::string &value);
     void setString(const std::string &value);
-    static Tips* getInstance(const std::string &value);
     static Tips* getInstance();
     static Tips * display(const std::string &filename);
     static void hide();
+
+    CREATE_FUNC(Tips);
 
 private:
     cocos2d::Node* _rootNode;
@@ -31,6 +32,7 @@ private:
     static Tips* _instance;
 
     cocos2d::Label* _contentLab;
+
 };
 
 

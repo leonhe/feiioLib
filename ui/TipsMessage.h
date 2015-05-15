@@ -23,7 +23,7 @@ public:
     virtual void setOpacity(GLubyte opacity) override;
 
 private:
-    cocos2d::Label* _text;
+    cocos2d::ui::Text* _text;
 };
 
 

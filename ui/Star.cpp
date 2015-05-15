@@ -32,15 +32,15 @@ bool Star::init(const std::string &enableFile, const std::string &disFile,int nu
     if (!Node::init()) return false;
     _starNum = num;
     auto openGLView = Director::getInstance()->getOpenGLView();
-    auto textureCache = Director::getInstance()->getTextureCache();
-    _enableTexture = textureCache->addImage(enableFile);
-    _disableTexutre = textureCache->addImage(disFile);
-    size= _enableTexture->getContentSize();
+    auto textureCache = SpriteFrameCache::getInstance();
+    _enableTexture = textureCache->getSpriteFrameByName(enableFile);
+    _disableTexutre = textureCache->getSpriteFrameByName(disFile);
+    size= _enableTexture->getOriginalSizeInPixels();
     for (int i=0; i<num; ++i)
     {
-        auto sp = Sprite::createWithTexture(_disableTexutre);
+        auto sp = Sprite::createWithSpriteFrame(_disableTexutre);
         sp->setScale(openGLView->getScaleX(),openGLView->getScaleY());
-        sp->setPosition(Vec2(i*_disableTexutre->getContentSize().width,0));
+        sp->setPosition(Vec2(i*_disableTexutre->getOriginalSizeInPixels().width,0));
         addChild(sp);
         _starVec.pushBack(sp);
     }
@@ -58,8 +58,8 @@ void Star::setEnableNum(int value)
     for (auto it = _starVec.begin(); it!=_starVec.end(); ++it)
     {
         auto sp = *it;
-        if (index<value && sp->getTexture()!=_enableTexture) {
-            sp->setTexture(_enableTexture);
+        if (index<value && sp->getSpriteFrame()!=_enableTexture) {
+            sp->setSpriteFrame(_enableTexture);
 
         }
         index ++;

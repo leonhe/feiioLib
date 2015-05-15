@@ -44,7 +44,7 @@ void Tips::setString(const std::string &value) {
     }
 
     float offsetW = bg_contentSize.width*0.1;
-    float offsetH = bg_contentSize.height*0.1;
+    float offsetH = 100;
     float w_val = bg_contentSize.width;
     txt_contentSize = _contentLab->getContentSize();
     CCLOG("%f %f",txt_contentSize.width,txt_contentSize.height);
@@ -55,22 +55,22 @@ void Tips::setString(const std::string &value) {
        w_val= txt_contentSize.width+ offsetW;
     }
     float  h_val = bg_contentSize.height;
-    if(txt_contentSize.height>h_val)
+    if(txt_contentSize.height<h_val)
     {
         h_val = txt_contentSize.height+offsetH;
     }
 
     _bg->setContentSize(cocos2d::Size(w_val,h_val));
     this->setContentSize(_bg->getContentSize());
-    _contentLab->setPosition(cocos2d::Vec2(_bg->getPositionX()+w_val*0.5, h_val*0.45));
+    _contentLab->setPosition(cocos2d::Vec2(_bg->getPositionX()+w_val*0.5, h_val*0.55));
 }
 
 
-Tips *Tips::getInstance(const string &value) {
+Tips *Tips::getInstance() {
 
     if(_instance== nullptr)
     {
-        _instance = Tips::createWithNode(value);
+        _instance = Tips::create();
         return _instance;
     }
     return _instance;
@@ -94,21 +94,27 @@ bool Tips::initWithName(const std::string &value) {
     return true;
 }
 
-Tips *Tips::getInstance() {
-    return _instance;
-}
-
 Tips * Tips::display(const std::string &filename) {
 
-    auto tips = Tips::getInstance(filename);
-    tips->setAnchorPoint(Vec2(0,1));
-    Director::getInstance()->getRunningScene()->addChild(tips);
-    return tips;
+    if(!Tips::_instance)
+    {
+        auto tips = Tips::createWithNode(filename);
+//        tips->initWithName(filename);
+        tips->setAnchorPoint(Vec2(0,1));
+        Director::getInstance()->getRunningScene()->addChild(tips);
+        Tips::_instance = tips;
+
+    }
+    return Tips::_instance;
 }
 
 void Tips::hide() {
-    auto tips = Tips::getInstance();
-    tips->removeFromParent();
-    _instance= nullptr;
+    if(Tips::_instance)
+    {
+        auto tips = Tips::_instance;
+        tips->removeFromParent();
+        Tips::_instance= nullptr;
+    }
+
 }
 

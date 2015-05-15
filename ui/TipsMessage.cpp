@@ -12,10 +12,12 @@ using namespace cocos2d::ui;
 
 bool TipsMessage::init() {
 
-   _text = Label::createWithSystemFont("Test Text", "Arial", 24);
-    _text->setColor(Color3B::RED);
-    _text->setSystemFontSize(36);
+   _text = Text::create("Test", "Arial", 36);
+    _text->setColor(Color3B::BLACK);
+//    _text->setSystemFontSize(36);
     addChild(_text);
+
+
     return true;
 }
 
@@ -26,6 +28,7 @@ TipsMessage * TipsMessage::display() {
     auto size=director->getVisibleSize();
     auto vec_target = cocos2d::Vec2(size.width*0.5,size.height*0.5);
     text->setPosition(vec_target-Vec2(0,50));
+
     text->setOpacity(0);
 
     auto moveTo = MoveTo::create(0.5, vec_target);
@@ -48,7 +51,7 @@ TipsMessage * TipsMessage::display() {
 void TipsMessage::setMessgae(const std::string &value) {
     _text->setString(value);
     _text->enableShadow();
-
+    _text->enableOutline(Color4B::WHITE, 2);
 }
 
 

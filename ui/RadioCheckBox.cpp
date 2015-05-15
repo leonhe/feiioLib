@@ -37,7 +37,7 @@ void RadioCheckBox::callBackTouchEvent(cocos2d::Ref *ref, cocos2d::ui::Widget::T
 
 bool RadioCheckBox::initWithImage(const std::string &file) {
 
-    _topImg = Sprite::create(file);
+    _topImg = Sprite::createWithSpriteFrameName(file);
     if(!_topImg) return false;
     _topImg->setAnchorPoint(cocos2d::Vec2(0.5,0.5));
     _topImg->retain();

@@ -32,7 +32,7 @@ private:
     int _starNum,_enableNum;
     cocos2d::Vector<cocos2d::Sprite*> _starVec;
     
-    cocos2d::Texture2D *_enableTexture,
+    cocos2d::SpriteFrame *_enableTexture,
                         *_disableTexutre;
     
     cocos2d::Size size;
